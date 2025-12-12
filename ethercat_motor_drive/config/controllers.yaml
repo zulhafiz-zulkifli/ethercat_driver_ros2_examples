@@ -14,6 +14,7 @@ controller_manager:
     effort_controller:
       type: effort_controllers/JointGroupEffortController
 
+
 trajectory_controller:
   ros__parameters:
     command_interfaces:
@@ -22,13 +23,18 @@ trajectory_controller:
       - position
     joints:
       - joint_1
+      - joint_2
+
 
 velocity_controller:
   ros__parameters:
     joints:
       - joint_1
+      - joint_2
+
 
 effort_controller:
   ros__parameters:
     joints:
       - joint_1
+      - joint_2

@@ -16,12 +16,27 @@
         <state_interface name="effort"/>
         <command_interface name="position"/>
         <command_interface name="reset_fault"/>
-        <ec_module name="Maxon">
+        <ec_module name="Maxon1">
           <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
           <param name="alias">0</param>
           <param name="position">0</param>
           <param name="mode_of_operation">8</param>
-          <param name="slave_config">$(find ethercat_motor_drive)/config/maxon_epos3_config.yaml</param>
+          <param name="slave_config">$(find ethercat_motor_drive)/config/eld3_config2.yaml</param>
+        </ec_module>
+      </joint>
+
+      <joint name="joint_2">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+        <command_interface name="position"/>
+        <command_interface name="reset_fault"/>
+        <ec_module name="Maxon2">
+          <plugin>ethercat_generic_plugins/EcCiA402Drive</plugin>
+          <param name="alias">0</param>
+          <param name="position">1</param>
+          <param name="mode_of_operation">8</param>
+          <param name="slave_config">$(find ethercat_motor_drive)/config/eld3_config2.yaml</param>
         </ec_module>
       </joint>
     </ros2_control>

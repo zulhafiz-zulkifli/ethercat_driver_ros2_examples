@@ -14,7 +14,7 @@
 
 from launch import LaunchDescription
 from launch.substitutions import Command, FindExecutable, PathJoinSubstitution, LaunchConfiguration
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, TimerAction
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -63,6 +63,9 @@ def generate_launch_description():
         executable="ros2_control_node",
         parameters=[robot_description, robot_controllers],
         output="both",
+        # prefix=['sudo -E env "PATH=$PATH"'],  # chrt removed
+        # Run with real-time priority
+        # prefix=['sudo -E env "PATH=$PATH" /usr/bin/chrt -f 95'],
     )
     robot_state_pub_node = Node(
         package="robot_state_publisher",
@@ -99,7 +102,11 @@ def generate_launch_description():
         control_node,
         robot_state_pub_node,
         joint_state_broadcaster_spawner,
-        trajectory_controller_spawner,
+        TimerAction(
+            period=20.0,  # 1 minute delay
+            actions=[trajectory_controller_spawner],
+        ),
+        # trajectory_controller_spawner,
         # velocity_controller_spawner,
         # effort_controller_spawner,
     ]
