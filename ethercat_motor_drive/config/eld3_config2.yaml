@@ -1,7 +1,7 @@
 vendor_id: 0x00004321
 product_id: 0x0000100a
 
-# assign_activate: 0x0300        # DC sync
+assign_activate: 0x0300        # DC sync
 auto_fault_reset: true         # Manual fault reset
 auto_enable_set: true
 auto_state_transitions: true  # Automatic state transitions
